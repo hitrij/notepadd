@@ -1,7 +1,7 @@
 package notepadd;
 
 public class Person {
-    private static  int count = 0;
+    public static  int count = 0;
 
     private int id;
     private String name;

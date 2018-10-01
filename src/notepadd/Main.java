@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
-    static ArrayList<Person> personList = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+    private static ArrayList<Person> personList = new ArrayList<>();
+    public Integer order;
 
     public static void main(String[] args) {
-        LoadPersonList();
+        int order = -1;
+        LoadPersonList(order);
 
         while (true) {
             System.out.println("Enter command (Create = 1, List Contacts = 2, Delete = 3, Exit = 0):");
@@ -39,7 +41,10 @@ public class Main {
     private static void deletePersone() {
         System.out.println("Enter command Person ID for Delete:");
         Integer cmd = scanner.nextInt();
-
+        personList = new ArrayList<>();
+        Person.count = -1;
+        LoadPersonList(cmd);
+        saveNewPerson();
 
     }
 
@@ -81,7 +86,7 @@ public class Main {
         //System.out.println(p);
     }
 
-    private static void LoadPersonList() {
+    private static void LoadPersonList(Integer order) {
         File file = new File("contacts.txt");
         try (Scanner in = new Scanner(file)) {
             while (in.hasNext()) {
@@ -90,7 +95,12 @@ public class Main {
                 p.setName(in.next());
                 p.setSurname(in.next());
                 p.setPhone(in.next());
-                personList.add(p);
+                if (p.getId() < order || order < 1) {
+                    personList.add(p);
+                } else if (p.getId() > order) {
+                    p.setId(p.getId()-1);
+                    personList.add(p);
+                }
             }
         } catch (IOException e) {
             System.out.println("Cannot save to File");
