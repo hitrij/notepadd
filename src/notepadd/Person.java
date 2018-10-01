@@ -7,6 +7,7 @@ public class Person {
     private String name;
     private String surname;
     private String phone;
+    private String email;
 
     public Person() {
         count++;
@@ -52,6 +53,15 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

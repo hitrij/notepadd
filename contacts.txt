@@ -1,6 +1,9 @@
-1 Maaks UUvarov 34444444
-2 Katja Kat 234566
-3 Petja Vasss 5757575
-4 Maks Uvarrr 444444
-5 Vasja Petrov 4444444
-6 Katja Katt 455555
+1 Maaks UUvarov 34444444 maaks@gmail.com
+2 Petja Vasss 5757575 petja@gmail.com
+3 Maks Uvarrr 444444 maks@gmail.com
+4 Vasja Petrov 4444444 vasja@gmail.com
+5 Katja Katt 455555 katjja@gmail.com
+6 Maks Uvar 23333 ma@gmail.com
+7 Katja Kat 3444566 kat@gmail.com
+8 Maks Uvarov 44444 maaa@gmail.com
+9 Maaaaaa Uvaaaa 2222222 dddd

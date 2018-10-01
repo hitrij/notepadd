@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
+public class Main<name, phone, surname, email> {
     private static Scanner scanner = new Scanner(System.in);
     private static ArrayList<Person> personList = new ArrayList<>();
     public Integer order;
@@ -60,6 +60,7 @@ public class Main {
         String name;
         String surname;
         String phone;
+        String email;
 
 
         do {
@@ -73,12 +74,22 @@ public class Main {
         do {
             System.out.println("Please enter phone number:");
             phone = scanner.next();
+            if (!phone.matches("\\d+")) {
+                phone="";
+                System.out.println("Phone number must contain only digits!");
+            }
+            if (phone.length()<5) phone="";
         } while (phone.isEmpty());
+        do {
+            System.out.println("Please Enter Email address:");
+            email = scanner.next();
+        } while (email.isEmpty());
 
         Person p = new Person();
         p.setName(name);
         p.setPhone(phone);
         p.setSurname(surname);
+        p.setEmail(email);
         personList.add(p);
 
         saveNewPerson();
@@ -95,6 +106,7 @@ public class Main {
                 p.setName(in.next());
                 p.setSurname(in.next());
                 p.setPhone(in.next());
+                p.setEmail(in.next());
                 if (p.getId() < order || order < 1) {
                     personList.add(p);
                 } else if (p.getId() > order) {
@@ -113,7 +125,7 @@ public class Main {
 
         try (PrintWriter out = new PrintWriter(file)) {
             for (Person p : personList) {
-                out.printf("%s %s %s %s\r\n", p.getId(), p.getName(), p.getSurname(), p.getPhone());
+                out.printf("%s %s %s %s %s\r\n", p.getId(), p.getName(), p.getSurname(), p.getPhone(), p.getEmail());
             }
         } catch (IOException e) {
             System.out.println("Cannot save to File");
