@@ -1,22 +1,13 @@
 package notepadd;
 
-public class Person {
-    public static  int count = 0;
+public class Person extends Record {
 
-    private int id;
     private String name;
     private String surname;
     private String phone;
     private String email;
 
-    public Person() {
-        count++;
-        id = count;
-    }
 
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -30,9 +21,9 @@ public class Person {
         return phone;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -49,7 +40,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +

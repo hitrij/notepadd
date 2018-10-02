@@ -16,7 +16,7 @@ public class Main<name, phone, surname, email> {
         LoadPersonList(order);
 
         while (true) {
-            System.out.println("Enter command (Create = 1, List Contacts = 2, Delete = 3, Exit = 0):");
+            System.out.println("Enter command (Create = 1, List Contacts = 2, Delete = 3, Help = H, Exit = 0):");
             String cmd = scanner.next();
             switch (cmd) {
                 case "1":
@@ -28,6 +28,9 @@ public class Main<name, phone, surname, email> {
                 case "3":
                     deletePersone();
                     break;
+                case "H":
+                    showHelp();
+                    break;
                 case "0":
                     return;
                 default:
@@ -36,6 +39,14 @@ public class Main<name, phone, surname, email> {
         }
 
 
+    }
+
+    private static void showHelp() {
+        System.out.println("Help xxxxxxxxxxx");
+        System.out.println("Help xxxxxxxxxxx");
+        System.out.println("Help xxxxxxxxxxx");
+        System.out.println("Help xxxxxxxxxxx");
+        System.out.println("Help xxxxxxxxxxx");
     }
 
     private static void deletePersone() {
@@ -65,20 +76,22 @@ public class Main<name, phone, surname, email> {
 
         do {
             System.out.println("Please enter name:");
-            name = scanner.next();
+            name = askString();
+            if (name.contains("_")) name="";
         } while (name.isEmpty());
         do {
             System.out.println("Please enter Surname:");
-            surname = scanner.next();
+            surname = askString();
+            if (surname.contains("_")) surname="";
         } while (surname.isEmpty());
         do {
             System.out.println("Please enter phone number:");
             phone = scanner.next();
             if (!phone.matches("\\d+")) {
-                phone="";
+                phone = "";
                 System.out.println("Phone number must contain only digits!");
             }
-            if (phone.length()<5) phone="";
+            if (phone.length() < 5) phone = "";
         } while (phone.isEmpty());
         do {
             System.out.println("Please Enter Email address:");
@@ -97,6 +110,23 @@ public class Main<name, phone, surname, email> {
         //System.out.println(p);
     }
 
+    private static String askString() {
+        var result = new ArrayList<String>();
+        var word = scanner.next();
+        if (word.startsWith("\"")) {
+            do {
+                result.add(word);
+                if (word.endsWith("\"")) {
+                    String str = String.join("_", result);
+                    return str.substring(1, str.length()-1);
+                }
+                word = scanner.next();
+            } while(true);
+        } else {
+            return word;
+        }
+    }
+
     private static void LoadPersonList(Integer order) {
         File file = new File("contacts.txt");
         try (Scanner in = new Scanner(file)) {
@@ -110,7 +140,7 @@ public class Main<name, phone, surname, email> {
                 if (p.getId() < order || order < 1) {
                     personList.add(p);
                 } else if (p.getId() > order) {
-                    p.setId(p.getId()-1);
+                    p.setId(p.getId() - 1);
                     personList.add(p);
                 }
             }
